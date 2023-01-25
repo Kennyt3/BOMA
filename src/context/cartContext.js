@@ -1,4 +1,4 @@
-import { useReducer, useContext, createContext } from 'react'
+import { useReducer, useContext, createContext, useEffect } from 'react'
 import cartReducer from '../reducer/cartReducer'
 import { useClothProvider } from './clothContext'
 const cartContext = createContext()
