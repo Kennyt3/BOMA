@@ -1,10 +1,10 @@
-import { useReducer, useContext, createContext, useEffect } from 'react'
+import { useReducer, useContext, createContext } from 'react'
 import cartReducer from '../reducer/cartReducer'
-import { useClothProvider } from './clothContext'
+// import { useClothProvider } from './clothContext'
 const cartContext = createContext()
 
 const CartProvider = ({ children }) => {
-  const { state: clothstate } = useClothProvider()
+  // const { state: clothstate } = useClothProvider()
 
   // useEffect(() => {
   //   setCart()
