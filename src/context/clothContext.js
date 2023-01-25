@@ -1,4 +1,4 @@
-import { useReducer, useContext, createContext, useEffect } from 'react'
+import { useReducer, useContext, createContext } from 'react'
 import clothReducer from '../reducer/clothReducer'
 import { clothdata } from '../data/clothdata'
 const clothContext = createContext()
