@@ -1,28 +1,28 @@
 import { useReducer, useContext, createContext } from 'react'
 import cartReducer from '../reducer/cartReducer'
-// import { useClothProvider } from './clothContext'
+import { useClothProvider } from './clothContext'
 const cartContext = createContext()
 
 const CartProvider = ({ children }) => {
-  // const { state: clothstate } = useClothProvider()
+  const { state: clothstate } = useClothProvider()
 
-  // useEffect(() => {
-  //   setCart()
-  // }, [clothstate])
+  useEffect(() => {
+    setCart()
+  }, [clothstate])
 
   const initialState = {
     cart: [],
     selected: undefined,
   }
 
-  // const setCart = () => {
-  //   dispatch({
-  //     type: 'SET_CART',
-  //     payload: {
-  //       cart: clothstate.cart,
-  //     },
-  //   })
-  // }
+  const setCart = () => {
+    dispatch({
+      type: 'SET_CART',
+      payload: {
+        cart: clothstate.cart,
+      },
+    })
+  }
   const selectIndex = (index) => {
     dispatch({
       type: 'SET_SELECTED',
