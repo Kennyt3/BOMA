@@ -83,25 +83,33 @@ const ClothProvider = ({ children }) => {
       newdata: newData,
     })
   }
+
+  const setExisting = (productItem) => {
+    return state.cart.findIndex(
+      (item) => item.id === productItem.id && item.num === productItem.num
+    )
+  }
+
   const addToCart = (productItem, index) => {
     let newCart
-    const existingIndex = state.cart.findIndex(
-      (item) => item.id === productItem.id
-    )
+    let existingIndex = setExisting(productItem)
     selectIndex(index)
     if (
-      state.cart[existingIndex]?.id === productItem.id &&
-      state.cart[existingIndex]?.num === productItem.num
+      state.cart[existingIndex]?.num !== productItem.num ||
+      state.cart[existingIndex]?.id !== productItem.id
     ) {
-      newCart = [
-        ...state.cart,
-        (state.cart[existingIndex].val =
-          state.cart[existingIndex].val + productItem.val),
-      ]
-    } else {
       newCart = [...state.cart, productItem]
+    } else {
+      newCart = [
+        ...state.cart.filter(
+          (item) => item.id !== productItem.id || item.num !== productItem.num
+        ),
+        {
+          ...state.cart[existingIndex],
+          val: state.cart[existingIndex].val + productItem.val,
+        },
+      ]
     }
-    console.log(state.cart[existingIndex])
     dispatch({
       type: 'ADD_TO_CART',
       payload: {
@@ -111,6 +119,17 @@ const ClothProvider = ({ children }) => {
     reset(index)
   }
 
+  const removeFromCart = (index) => {
+    let newCart = state.cart.filter(
+      (item) => state.cart.indexOf(item) !== index
+    )
+    dispatch({
+      type: 'REMOVE_FROM_CART',
+      payload: {
+        newcart: newCart,
+      },
+    })
+  }
   const [state, dispatch] = useReducer(clothReducer, initialState)
   return (
     <clothContext.Provider
@@ -121,6 +140,7 @@ const ClothProvider = ({ children }) => {
         increaseSize,
         reduceSize,
         addToCart,
+        removeFromCart,
       }}
     >
       {children}

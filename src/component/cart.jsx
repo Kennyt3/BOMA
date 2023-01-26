@@ -4,7 +4,7 @@ import { useCartProvider } from '../context/cartContext'
 
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 const Cart = () => {
-  const { state: clothstate } = useClothProvider()
+  const { state: clothstate, removeFromCart } = useClothProvider()
   const { increaseQuantity, reduceQuantity } = useCartProvider()
   const cart = clothstate.cart
   return (
@@ -27,6 +27,9 @@ const Cart = () => {
               <div className={`flex justify-between py-[24px]`}>
                 <button
                   className={`text-danger capitalize text-lg font-normal leading-[24px]`}
+                  onClick={() => {
+                    removeFromCart(index)
+                  }}
                 >
                   Remove item
                 </button>

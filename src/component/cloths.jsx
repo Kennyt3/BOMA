@@ -65,7 +65,7 @@ const Cloths = () => {
                     <button
                       className='text-smheader font-medium text-xs p-1 border border-logo'
                       onClick={() => {
-                        addToCart({ name, price, num, val }, index)
+                        addToCart({ id, name, price, num, val }, index)
                       }}
                     >
                       Add to cart
