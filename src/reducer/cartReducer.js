@@ -18,6 +18,11 @@ const cartReducer = (state, action) => {
         ...state,
         cart: action.payload.cart,
       }
+    case 'GET_TOTAL':
+      return {
+        ...state,
+        total: action.payload.total,
+      }
     default:
       return {
         ...state,

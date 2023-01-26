@@ -1,4 +1,4 @@
-import { useReducer, useContext, createContext } from 'react'
+import { useReducer, useContext, createContext, useEffect } from 'react'
 import clothReducer from '../reducer/clothReducer'
 import { clothdata } from '../data/clothdata'
 const clothContext = createContext()
@@ -10,6 +10,7 @@ const ClothProvider = ({ children }) => {
     size: 0,
     value: 1,
     cart: [],
+    total: 0,
   }
 
   const selectIndex = (index) => {
@@ -131,6 +132,25 @@ const ClothProvider = ({ children }) => {
     })
   }
   const [state, dispatch] = useReducer(clothReducer, initialState)
+  const getTotal = () => {
+    let total = 0
+    state.cart.map(
+      (item) =>
+        (total += Number(item.price.replace(/[^0-9.]+/g, '')) * item.val)
+    )
+
+    dispatch({
+      type: 'GET_TOTAL',
+      payload: {
+        total: total,
+      },
+    })
+  }
+
+  useEffect(() => {
+    getTotal()
+    // eslint-disable-next-line
+  }, [state.cart])
   return (
     <clothContext.Provider
       value={{
@@ -140,7 +160,9 @@ const ClothProvider = ({ children }) => {
         increaseSize,
         reduceSize,
         addToCart,
+        getTotal,
         removeFromCart,
+        total: state.total,
       }}
     >
       {children}

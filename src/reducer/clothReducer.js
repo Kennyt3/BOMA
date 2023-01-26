@@ -36,6 +36,11 @@ const clothReducer = (state, action) => {
         ...state,
         data: action.payload.newdata,
       }
+    case 'GET_TOTAL':
+      return {
+        ...state,
+        total: action.payload.total,
+      }
 
     default:
       return {
