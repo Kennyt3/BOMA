@@ -1,15 +1,24 @@
 import React from 'react'
 import { useClothProvider } from '../context/clothContext'
 import { useCartProvider } from '../context/cartContext'
-
+import { useAppContext } from '../context/appContext'
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 const Cart = () => {
   const { state: clothstate, removeFromCart, total } = useClothProvider()
   const { increaseQuantity, reduceQuantity } = useCartProvider()
+  const { lightmode } = useAppContext()
   const cart = clothstate.cart
   return (
-    <div className={`w-[300px] md:w-[300px] z-[1] bg-white  text-black `}>
-      <div className={`border-b-[1px]   border-bod pt-[60px]`}>
+    <div
+      className={`w-[280px] md:w-[300px] z-[1] bg-white ${
+        !lightmode && 'bg-main text-white'
+      }  text-black `}
+    >
+      <div
+        className={`border-b-[1px] ${
+          !lightmode && 'text-white'
+        }  border-bod pt-[60px]`}
+      >
         <h4
           className={`font-medium ml-5 text-[20px] leading-[24.2px] mb-[60px]`}
         >
@@ -17,7 +26,12 @@ const Cart = () => {
         </h4>
         {cart.map(({ id, name, price, val }, index) => {
           return (
-            <div key={index} className={` border-t-[1px] px-7 border-bod`}>
+            <div
+              key={index}
+              className={` border-t-[1px] px-3 md:px-7 ${
+                !lightmode && 'text-white'
+              } border-bod`}
+            >
               <div className={`flex justify-between pt-[30px]`}>
                 <h5 className={`text-lg font-semibold leading-[20px]`}>
                   {name}
@@ -28,7 +42,9 @@ const Cart = () => {
               </div>
               <div className={`flex justify-between py-[24px]`}>
                 <button
-                  className={`text-danger capitalize text-[20px] font-normal leading-[24px]`}
+                  className={`text-danger ${
+                    !lightmode && 'text-brightred'
+                  } capitalize text-[20px] font-normal leading-[24px]`}
                   onClick={() => {
                     removeFromCart(index)
                   }}
@@ -37,7 +53,7 @@ const Cart = () => {
                 </button>
                 <div className='flex gap-3 justify-between items-center'>
                   <p
-                    className={`uppercase text-[20px] font-normal leading-[24px]`}
+                    className={`uppercase  text-[18px] font-normal leading-[24px]`}
                   >
                     Qty
                   </p>
@@ -62,12 +78,16 @@ const Cart = () => {
           )
         })}
         <div
-          className={`flex justify-between px-5 border-t-[1px] border-bod py-7  items-center`}
+          className={`flex justify-between px-3 md:px-5 border-t-[1px] border-bod py-5  items-center`}
         >
-          <h1 className={`text-[24px] font-semibold leading-[28.8px]`}>
+          <h1
+            className={`text-[20px] md:text-[24px] font-semibold leading-[28.8px]`}
+          >
             Total Amount
           </h1>
-          <p className={`text-[24px] font-semibold leading-[28.8px]`}>
+          <p
+            className={`text-[20px] md:text-[24px] font-semibold leading-[28.8px]`}
+          >
             ₦{total}
           </p>
         </div>

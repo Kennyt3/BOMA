@@ -18,6 +18,11 @@ module.exports = {
         bod: 'rgba(181, 183, 186, 1)',
         lightsmalnav: 'rgba(248, 248, 248, 1)',
         process: 'rgba(17, 112, 224, 1)',
+        brightred: 'rgba(232, 14, 14, 1)',
+        footerbgl: 'rgba(245, 245, 245, 1)',
+        footerbgd: 'rgba(23, 25, 28, 1)',
+        footertxd: 'rgba(248, 248, 248, 1)',
+        footertxl: 'rgba(17, 112, 224, 1)',
       },
       screens: {
         ll: '350px',
