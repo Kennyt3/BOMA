@@ -8,7 +8,7 @@ const Cart = () => {
   const { increaseQuantity, reduceQuantity } = useCartProvider()
   const cart = clothstate.cart
   return (
-    <div className={`w-[300px] md:w-[400px] z-[1] bg-white  text-black `}>
+    <div className={`w-[300px] md:w-[300px] z-[1] bg-white  text-black `}>
       <div className={`border-b-[1px]   border-bod pt-[60px]`}>
         <h4
           className={`font-medium ml-5 text-[20px] leading-[24.2px] mb-[60px]`}
