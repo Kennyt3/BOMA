@@ -1,6 +1,6 @@
 import React from 'react'
 import { useClothProvider } from '../context/clothContext'
-import { useCartProvider } from '../context/CartContext'
+import { useCartProvider } from '../context/cartContext'
 import { useAppContext } from '../context/appContext'
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 const Cart = () => {
