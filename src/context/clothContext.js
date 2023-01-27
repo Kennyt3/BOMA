@@ -148,7 +148,18 @@ const ClothProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    getTotal()
+    let total = 0
+    state.cart.map(
+      (item) =>
+        (total += Number(item.price.replace(/[^0-9.]+/g, '')) * item.val)
+    )
+
+    dispatch({
+      type: 'GET_TOTAL',
+      payload: {
+        total: total,
+      },
+    })
     // eslint-disable-next-line
   }, [state.cart])
   return (

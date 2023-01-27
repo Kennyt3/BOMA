@@ -4,6 +4,7 @@ import { WiStars } from 'react-icons/wi'
 import { useAppContext } from '../context/appContext'
 import { CiSearch } from 'react-icons/ci'
 import { TfiClose } from 'react-icons/tfi'
+import { useClothProvider } from '../context/clothContext'
 
 const Navbar = () => {
   const {
@@ -14,6 +15,8 @@ const Navbar = () => {
     closeSearch,
     toggleCart,
   } = useAppContext()
+  const { state: clothstate } = useClothProvider()
+  const cart = clothstate.cart
   return (
     <div
       className={`h-full py-[15px] px-4 ll:px-7 sm:px-10 flex  items-center justify-between ${
@@ -33,7 +36,11 @@ const Navbar = () => {
         className={` text-logo ${!lightmode && 'md:text-white'}`}
       />
       <div className='flex gap-3 md:block'>
-        <label className={`flex items-center  gap-3 relative md:hidden`}>
+        <label
+          className={`flex items-center  gap-3 relative md:hidden ${
+            !lightmode && 'text-search'
+          }`}
+        >
           {searchopen ? (
             <TfiClose
               size={15}
@@ -52,15 +59,19 @@ const Navbar = () => {
             placeholder='Search for item'
             className={`bg-plain w-[130px] 
              ${searchopen ? 'block' : 'hidden'} 
-            md:hidden px-3`}
+            md:hidden px-3 `}
             style={{ fontFamily: 'Arial, FontAwesome' }}
           />
         </label>
-        <BsHandbag
-          size={20}
-          className={`text-logo ml-5 ${!lightmode && 'md:text-white'}`}
-          onClick={toggleCart}
-        />
+        <div className={`relative  ml-5`} onClick={toggleCart}>
+          <BsHandbag
+            size={20}
+            className={`text-logo  ${!lightmode && 'md:text-white'}`}
+          />
+          <p className={`absolute text-red-700 top-2 left-2 z-10 text-xl`}>
+            {cart.length}
+          </p>
+        </div>
       </div>
     </div>
   )
