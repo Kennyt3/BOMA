@@ -15,15 +15,16 @@ const ClothProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    fetch('/clothdata?_sort=id&_order=desc').then((res) => console.log(res))
-    // .then((data) => {
-    //   dispatch({
-    //     type: 'DATA_FETCHED',
-    //     payload: {
-    //       data: data,
-    //     },
-    //   })
-    // })
+    fetch('http://localhost:5000/clothdata')
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({
+          type: 'DATA_FETCHED',
+          payload: {
+            data: data,
+          },
+        })
+      })
   }, [])
 
   const selectIndex = (index) => {
