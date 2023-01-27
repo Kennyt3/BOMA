@@ -5,13 +5,26 @@ const clothContext = createContext()
 
 const ClothProvider = ({ children }) => {
   const initialState = {
-    data: clothdata,
+    // data: clothdata,
+    data: [],
     selected: undefined,
     size: 0,
     value: 1,
     cart: [],
     total: 0,
   }
+
+  useEffect(() => {
+    fetch('/clothdata?_sort=id&_order=desc').then((res) => console.log(res))
+    // .then((data) => {
+    //   dispatch({
+    //     type: 'DATA_FETCHED',
+    //     payload: {
+    //       data: data,
+    //     },
+    //   })
+    // })
+  }, [])
 
   const selectIndex = (index) => {
     dispatch({

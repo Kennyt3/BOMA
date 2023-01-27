@@ -1,5 +1,10 @@
 const clothReducer = (state, action) => {
   switch (action.type) {
+    case 'DATA_FETCHED':
+      return {
+        ...state,
+        data: action.payload.data,
+      }
     case 'SET_SELECTED':
       return {
         ...state,
