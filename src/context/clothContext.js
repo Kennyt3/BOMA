@@ -2,13 +2,13 @@ import { useReducer, useContext, createContext, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import clothReducer from '../reducer/clothReducer'
-// import { clothdata } from '../data/clothdata'
+import { clothdata } from '../data/clothdata'
 const clothContext = createContext()
 
 const ClothProvider = ({ children }) => {
   const initialState = {
-    // data: clothdata,
-    data: [],
+    data: clothdata,
+    // data: [],
     selected: undefined,
     size: 0,
     value: 1,
@@ -16,18 +16,18 @@ const ClothProvider = ({ children }) => {
     total: 0,
   }
 
-  useEffect(() => {
-    fetch('http://localhost:5000/clothdata')
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch({
-          type: 'DATA_FETCHED',
-          payload: {
-            data: data,
-          },
-        })
-      })
-  }, [])
+  // useEffect(() => {
+  //   fetch('http://localhost:5000/clothdata')
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       dispatch({
+  //         type: 'DATA_FETCHED',
+  //         payload: {
+  //           data: data,
+  //         },
+  //       })
+  //     })
+  // }, [])
 
   const selectIndex = (index) => {
     dispatch({
