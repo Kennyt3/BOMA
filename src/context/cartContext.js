@@ -13,7 +13,7 @@ const CartProvider = ({ children }) => {
         cart: clothstate.cart,
       },
     })
-    getTotal()
+    // getTotal()
     // eslint-disable-next-line
   }, [clothstate])
 

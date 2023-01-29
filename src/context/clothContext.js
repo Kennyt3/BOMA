@@ -1,6 +1,8 @@
 import { useReducer, useContext, createContext, useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import clothReducer from '../reducer/clothReducer'
-import { clothdata } from '../data/clothdata'
+// import { clothdata } from '../data/clothdata'
 const clothContext = createContext()
 
 const ClothProvider = ({ children }) => {
@@ -131,6 +133,9 @@ const ClothProvider = ({ children }) => {
         newcart: newCart,
       },
     })
+    toast.success('Added to cart !', {
+      position: toast.POSITION.TOP_RIGHT,
+    })
     reset(index)
   }
 
@@ -143,6 +148,9 @@ const ClothProvider = ({ children }) => {
       payload: {
         newcart: newCart,
       },
+    })
+    toast.error('Removed from cart !', {
+      position: toast.POSITION.TOP_RIGHT,
     })
   }
   const [state, dispatch] = useReducer(clothReducer, initialState)

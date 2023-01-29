@@ -68,7 +68,11 @@ const Navbar = () => {
             size={20}
             className={`text-logo  ${!lightmode && 'md:text-white'}`}
           />
-          <p className={`absolute text-red-700 top-2 left-2 z-10 text-xl`}>
+          <p
+            className={`absolute  top-2 left-2 z-10 text-xl ${
+              !lightmode ? 'text-white' : 'text-red-600'
+            }`}
+          >
             {cart.length}
           </p>
         </div>
