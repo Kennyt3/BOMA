@@ -21,7 +21,7 @@ const Hero = () => {
             <input
               type='search'
               placeholder='Search for item'
-              className={`w-full h-[40px]  focus:border-none hover:border-none sm:block pl-10 bg-plain ${
+              className={`w-full h-[40px] text-black focus:border-none hover:border-none sm:block pl-10 bg-plain ${
                 !lightmode && 'bg-white'
               }`}
             />
